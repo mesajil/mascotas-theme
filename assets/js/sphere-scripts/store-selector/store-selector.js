@@ -53,13 +53,6 @@ function moveStoreSelector() {
   return false
 }
 
-// function checkShippingOption() {
-//     const sendByWeightOption = document.getElementById('shippingOptionRadio-670d3bc252f6d-c97694551ad0f17976db915df5c7e19e');
-
-//     // Si la opción "Enviar por peso" no está seleccionada, mostrar el selector de tienda
-//     setStoreSelector(!sendByWeightOption?.checked);
-// }
-
 // Crear un observador para detectar cambios en el DOM y mover el selector
 const observer = new MutationObserver(mutationsList => {
   for (const mutation of mutationsList) {
