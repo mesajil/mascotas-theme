@@ -1,4 +1,4 @@
-// const storeIdSelected = ''
+const TEST = false
 
 /* *********
 Este módulo agrega comportamiento al keyInput. Cuando el
@@ -58,7 +58,7 @@ const moveStoreSelector = (storeSelector, shippingOptions) => {
 
       // Insertamos el nuevo fieldset después del fieldset 'checkout-shipping-options'
       if (newFieldset?.hasChildNodes()) {
-        console.log(newFieldset)
+        if (TEST) console.log('Se creo nuevo fieldset: ', newFieldset)
         shippingOptionsFieldset.insertAdjacentElement('afterend', newFieldset)
       }
     }
@@ -85,8 +85,8 @@ const observer = new MutationObserver(mutations => {
     const storeSelector = document.querySelector('.dynamic-form-field.dynamic-form-field--field_52')
     const shippingOptions = document.querySelector('#checkout-shipping-options')
 
-    console.log('Hello')
     if (storeSelector && shippingOptions) {
+      if (TEST) console.log('Se encontraron storeSelector && shippingOptions')
       // Realizamos cambios en el DOM
       safeDOMUpdate(() => {
         updateTitle(storeSelector)
