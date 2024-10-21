@@ -27,6 +27,7 @@
     </article>
     {{/if}}
 
+    <!-- Seccion Nosotras - 2024/10 -->
     <section class="footer-info">
       <article class="footer-info-col footer-info-col--small" data-section-type="footer-nosotras">
         <h3 class="footer-info-heading">NOSOTRAS</h3>
@@ -40,7 +41,67 @@
           style="max-width: 150px; margin-top: 10px" />
       </article>
 
-      <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+      <!-- Seccion Enlaces de interes - 2024/10 -->
+      <article class="footer-info-col footer-info-col--small" data-section-type="footer-enlaces">
+        <h3 class="footer-info-heading">ENLACES DE INTERÉS</h3>
+        <ul class="footer-info-list">
+          {{#each pages}}
+          <li>
+            <a href="{{url}}">{{name}}</a>
+          </li>
+          {{/each}}
+          <li>
+            <a href="">Tiendas</a>
+          </li>
+          <li>
+            <a href="">Preguntas frecuentes (FAQ)</a>
+          </li>
+          <li>
+            <a href="">Términos del servicio</a>
+          </li>
+          <li>
+            <a href="">Política de reembolso</a>
+          </li>
+          <li>
+            <a href="https://20sfe2s3.forms.app/libro-de-reclamaciones" target="_blank" rel="noopener noreferrer"
+              >Libro de reclamaciones</a
+            >
+          </li>
+        </ul>
+      </article>
+
+      <!-- Sección de Contacto -->
+      <article class="footer-info-col footer-info-col--small" data-section-type="footer-contacto">
+        <h3 class="footer-info-heading">CONTÁCTO</h3>
+        <ul class="footer-info-list">
+          <li>
+            <p style="margin: 0 0 12px">Teléfono: 01 7196666 anexo 121</p>
+          </li>
+          <li>
+            <p style="margin: 0 0 12px">
+              Correo: <a href="mailto:atencionalcliente@brujhas.com"> atencionalcliente@brujhas.com </a>
+            </p>
+          </li>
+          <li>
+            <p style="margin: 0 0 12px">
+              Whatsapp:
+              <a
+                href="https://api.whatsapp.com/send?phone=51924886303&amp;text=Bienvenida%20a%20BRUJHA%27S.%20%C2%BFC%C3%B3mo%20podemos%20ayudarte%20hoy%3F&amp;_kx="
+                title="Envíanos un mensaje a través de WhatsApp"
+                >+51 924 886 303</a
+              >
+            </p>
+          </li>
+          <img
+            src="https://brujhas.com/cdn/shop/files/libro-de-reclamacione_230x.png?v=1677354423"
+            alt="Logo de libro de reclamaciones"
+            style="max-width: 120px; margin-top: 10px" />
+          {{> components/common/sphere/social-links/social-links}}
+        </ul>
+      </article>
+
+      <!-- Se reemplaza por sección Enlaces de interes -->
+      <!-- <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
         <h3 class="footer-info-heading">{{lang 'footer.navigate'}}</h3>
         <ul class="footer-info-list">
           {{#each pages}}
@@ -52,9 +113,10 @@
             <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
           </li>
         </ul>
-      </article>
+      </article> -->
 
-      <article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
+      <!-- Se reemplaza por sección Enlaces de interes -->
+      <!-- <article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
         <h3 class="footer-info-heading">{{lang 'footer.categories'}}</h3>
         <ul class="footer-info-list">
           {{#each categories}}
@@ -63,7 +125,7 @@
           </li>
           {{/each}}
         </ul>
-      </article>
+      </article> -->
 
       {{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
       <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
@@ -79,6 +141,7 @@
       </article>
       {{/and}}
 
+      <!-- Ocultar -->
       <!-- {{#if settings.address}}
             <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
                 <h3 class="footer-info-heading">{{lang 'footer.info'}}</h3>
@@ -94,6 +157,8 @@
         components/common/payment-icons}}
       </article>
     </section>
+
+    <!-- Ocultar -->
     <!-- {{#if theme_settings.show_powered_by}}
             <div class="footer-copyright">
                 <p class="powered-by">{{lang 'footer.powered_by'}} <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a></p>
