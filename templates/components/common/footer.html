@@ -21,7 +21,16 @@
                     {{> components/common/social-links}}
             </article>
         {{/if}}
+
         <section class="footer-info">
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-nosotras">
+                <h3 class="footer-info-heading">NOSOTRAS</h3>
+                <p>Somos una marca con más de 20 años en moda femenina. Ropa para una mujer urbana, actual y romántica. Hecho con ❤️ por manos peruanas ✋🏻🇵🇪</p>
+                <img src="https://brujhas.com/cdn/shop/files/logo-brujhas-PNG_a1f87e5f-2227-4d08-b41f-cea7ee96edf6_300x.png?v=1675441273" 
+         alt="Logo de Brujhas" 
+         style="max-width: 150px; margin-top: 10px;">
+            </article>
+
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
                 <h3 class="footer-info-heading">{{lang 'footer.navigate'}}</h3>
                 <ul class="footer-info-list">
@@ -61,7 +70,7 @@
             </article>
             {{/and}}
 
-            {{#if settings.address}}
+            <!-- {{#if settings.address}}
             <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
                 <h3 class="footer-info-heading">{{lang 'footer.info'}}</h3>
                 <address>{{nl2br settings.address}}</address>
@@ -69,7 +78,7 @@
                     <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
                 {{/if}}
             </article>
-            {{/if}}
+            {{/if}} -->
 
             <article class="footer-info-col" data-section-type="newsletterSubscription">
                 {{#if settings.show_newsletter_box}}
@@ -78,11 +87,11 @@
                 {{> components/common/payment-icons}}
             </article>
         </section>
-        {{#if theme_settings.show_powered_by}}
+        <!-- {{#if theme_settings.show_powered_by}}
             <div class="footer-copyright">
                 <p class="powered-by">{{lang 'footer.powered_by'}} <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a></p>
             </div>
-        {{/if}}
+        {{/if}} -->
         {{#if theme_settings.show_copyright_footer}}
             <div class="footer-copyright">
                 <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </p>
