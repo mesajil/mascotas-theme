@@ -1,25 +1,72 @@
+// const storeIdSelected = ''
+
+/* *********
+Este módulo agrega comportamiento al keyInput. Cuando el
+keyInput es seleccionada entonces la store selector debe
+desaparecer, y aparecer en caso contrario.
+********** */
+const hideStoreSelector = (storeSelector, shippingOptions) => {
+  if (storeSelector && shippingOptions) {
+    // Obtener keyInput
+    const inputId = shippingOptions
+      .querySelector('ul.form-checklist li:nth-child(2) label.form-label')
+      ?.getAttribute('for')
+    const keyInput = document.getElementById(inputId)
+
+    // Mostrar/Ocultar storeSelector
+    document.getElementById('store-selector-fieldset').style.display = keyInput?.checked ? 'none' : 'block'
+
+    // Ocultar store "."
+    const selector = storeSelector.querySelector('#field_52Input')
+    selector.querySelector('option[value="0"]').style.display = 'none'
+
+    // Setear opción "." cuando keyInput está seleccionada
+    if (selector && keyInput?.checked) {
+      selector.selectedIndex = 1
+      // selector.dispatchEvent(new Event('change'))
+    } else if (selector && selector.selectedIndex === 1) {
+      selector.selectedIndex = 0
+      // selector.dispatchEvent(new Event('change'))
+    }
+  }
+}
+
 /* *********
 Este módulo mueve el store selector hacia el pie
 de las shipping options
 ********** */
 const moveStoreSelector = (storeSelector, shippingOptions) => {
-  if (!storeSelector && !shippingOptions) return
-  const item = document.createElement('li')
-  item.appendChild(storeSelector)
-  shippingOptions.appendChild(item)
+  if (storeSelector && shippingOptions) {
+    // const item = document.createElement('li')
+    // item.appendChild(storeSelector)
+    // shippingOptions.querySelector('ul.form-checklist')?.appendChild(item)
+
+    // Seleccionamos el fieldset con el id 'checkout-shipping-options'
+    const shippingOptionsFieldset = document.getElementById('checkout-shipping-options')
+    const nextFieldset = shippingOptionsFieldset?.nextElementSibling
+
+    // Si se encuentra un form-fieldset después de las shipping options, entonces insertar el storeSelector
+    if (nextFieldset && nextFieldset.classList.contains('form-fieldset')) {
+      // Creamos un nuevo fieldset
+      const newFieldset = document.createElement('fieldset')
+      newFieldset.id = 'store-selector-fieldset'
+      newFieldset.appendChild(storeSelector)
+
+      // Insertamos el nuevo fieldset después del fieldset 'checkout-shipping-options'
+      if (newFieldset?.hasChildNodes()) {
+        console.log(newFieldset)
+        shippingOptionsFieldset.insertAdjacentElement('afterend', newFieldset)
+      }
+    }
+  }
 }
 
 /* *********
 Este módulo elimina el texto (Opcional) del título
 ********** */
 const updateTitle = storeSelector => {
-  if (!storeSelector) return
-
-  const optionalText = storeSelector.querySelector('.optimizedCheckout-contentSecondary')
-
-  if (optionalText) {
-    optionalText.remove()
-  }
+  const optionalText = storeSelector?.querySelector('.optimizedCheckout-contentSecondary')
+  optionalText?.remove()
 }
 
 /* *********
@@ -32,12 +79,16 @@ caso sea así, se modifican estos elementos.
 const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     const storeSelector = document.querySelector('.dynamic-form-field.dynamic-form-field--field_52')
-    const shippingOptions = document.querySelector('#checkout-shipping-options ul.form-checklist')
+    const shippingOptions = document.querySelector('#checkout-shipping-options')
 
     console.log('Hello')
     if (storeSelector && shippingOptions) {
-      updateTitle(storeSelector)
-      safeDOMUpdate(() => moveStoreSelector(storeSelector, shippingOptions))
+      // Realizamos cambios en el DOM
+      safeDOMUpdate(() => {
+        updateTitle(storeSelector)
+        moveStoreSelector(storeSelector, shippingOptions)
+        hideStoreSelector(storeSelector, shippingOptions)
+      })
     }
   })
 })
