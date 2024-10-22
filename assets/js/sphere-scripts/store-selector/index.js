@@ -1,4 +1,4 @@
-// const storeIdSelected = ''
+const TEST = false
 
 /* *********
 Este módulo agrega comportamiento al keyInput. Cuando el
@@ -23,10 +23,14 @@ const hideStoreSelector = (storeSelector, shippingOptions) => {
     // Setear opción "." cuando keyInput está seleccionada
     if (selector && keyInput?.checked) {
       selector.selectedIndex = 1
-      // selector.dispatchEvent(new Event('change'))
+      selector.dispatchEvent(new Event('change', { bubbles: true }))
     } else if (selector && selector.selectedIndex === 1) {
       selector.selectedIndex = 0
-      // selector.dispatchEvent(new Event('change'))
+      selector.dispatchEvent(new Event('change', { bubbles: true }))
+
+      // Add form-field--error class to div.form-field
+      // const parent = selector.closest('.form-field')
+      // parent?.classList.add('form-field--error')
     }
   }
 }
@@ -54,7 +58,7 @@ const moveStoreSelector = (storeSelector, shippingOptions) => {
 
       // Insertamos el nuevo fieldset después del fieldset 'checkout-shipping-options'
       if (newFieldset?.hasChildNodes()) {
-        console.log(newFieldset)
+        if (TEST) console.log('Se creo nuevo fieldset: ', newFieldset)
         shippingOptionsFieldset.insertAdjacentElement('afterend', newFieldset)
       }
     }
@@ -81,8 +85,8 @@ const observer = new MutationObserver(mutations => {
     const storeSelector = document.querySelector('.dynamic-form-field.dynamic-form-field--field_52')
     const shippingOptions = document.querySelector('#checkout-shipping-options')
 
-    console.log('Hello')
     if (storeSelector && shippingOptions) {
+      if (TEST) console.log('Se encontraron storeSelector && shippingOptions')
       // Realizamos cambios en el DOM
       safeDOMUpdate(() => {
         updateTitle(storeSelector)
